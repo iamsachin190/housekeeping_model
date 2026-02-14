@@ -1,0 +1,15 @@
+{
+  "image_path": "./dataset/images\\eval_c173eb9f78734eccba925eb0a4f5d1e1.jpg",
+  "timestamp": "2026-02-14T18:43:10.331350",
+  "ai_output": {
+    "status": "Dirty",
+    "confidence": 0.95,
+    "reasoning": "The sinks in the image are visibly dirty. There is significant discoloration and grime buildup, particularly around the drains and the base of the faucets. Small specks of debris are also present in the sinks. These issues indicate a clear lack of regular cleaning and maintenance.",
+    "issues_detected": [
+      "Stains",
+      "Dust",
+      "Trash"
+    ]
+  },
+  "verified": false
+}
