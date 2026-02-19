@@ -25,6 +25,11 @@ def save_dataset_record(image_path: str, result: dict):
     with open(json_path, "w") as f:
         json.dump(record, f, indent=2)
 
+@router.get("/health")
+async def health_check():
+    """Health check endpoint to verify service status."""
+    return {"status": "ok", "timestamp": datetime.utcnow().isoformat()}
+
 @router.post("/evaluate", response_model=InspectionResult)
 async def evaluate_cleanliness(
     files: List[UploadFile] = File(...),

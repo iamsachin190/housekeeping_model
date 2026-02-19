@@ -5,9 +5,11 @@ import os
 from PIL import Image
 
 # Configuration
-BASE_URL = "http://localhost:8000"
+# BASE_URL = "http://localhost:8000"
+# Pointing to the deployed server
+BASE_URL = "http://122.169.42.110:1411"
 # REPLACE THIS with the actual path to an image on your laptop
-REAL_IMAGE_PATH = r"C:\Users\sachi\Desktop\HKTASKMODEL\dataset\images\bathroom.jpg"
+REAL_IMAGE_PATH = r"C:\Users\sachi\Desktop\HKTASKMODEL\dataset\images\testimage.jpeg"
 
 def create_dummy_image(color="blue"):
     """Creates a simple in-memory image for testing."""
@@ -56,7 +58,10 @@ def test_evaluate_images():
         response = requests.post(f"{BASE_URL}/evaluate", files=files)
         print(f"Status: {response.status_code}")
         print(f"Time Taken: {time.time() - start_time:.2f}s")
-        print(f"Response: {response.json()}\n")
+        try:
+            print(f"Response: {response.json()}\n")
+        except:
+            print(f"Response Text: {response.text[:200]}...\n")
     except Exception as e:
         print(f"Failed: {e}")
 
@@ -78,12 +83,14 @@ def test_real_image(image_path):
             response = requests.post(f"{BASE_URL}/evaluate", files=files)
             print(f"Status: {response.status_code}")
             print(f"Time Taken: {time.time() - start_time:.2f}s")
-            print(f"Response: {response.json()}\n")
+            try:
+                print(f"Response: {response.json()}\n")
+            except:
+                print(f"Response Text: {response.text[:200]}...\n")
     except Exception as e:
         print(f"Failed: {e}")
 
 if __name__ == "__main__":
-    print("--- Starting BIMS API Tests ---\n")
     # test_index_image()
     # test_evaluate_images()
     test_real_image(REAL_IMAGE_PATH)
