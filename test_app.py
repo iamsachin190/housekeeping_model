@@ -7,7 +7,7 @@ from PIL import Image
 # Configuration
 # BASE_URL = "http://localhost:8000"
 # Pointing to the deployed server
-BASE_URL = "http://122.169.42.110:1411"
+BASE_URL = "http://122.169.42.110:1415"
 # REPLACE THIS with the actual path to an image on your laptop
 REAL_IMAGE_PATH = r"C:\Users\sachi\Desktop\HKTASKMODEL\dataset\images\testimage.jpeg"
 
@@ -17,6 +17,16 @@ def create_dummy_image(color="blue"):
     buf = io.BytesIO()
     img.save(buf, format='JPEG')
     return buf.getvalue()
+
+def test_health():
+    """Tests the /health endpoint."""
+    print(f"Testing GET {BASE_URL}/health ...")
+    try:
+        response = requests.get(f"{BASE_URL}/health")
+        print(f"Status: {response.status_code}")
+        print(f"Response: {response.json()}\n")
+    except Exception as e:
+        print(f"Failed: {e}")
 
 def test_index_image():
     """Tests the /index endpoint to add a reference image."""
@@ -91,6 +101,8 @@ def test_real_image(image_path):
         print(f"Failed: {e}")
 
 if __name__ == "__main__":
+    # test_health()
     # test_index_image()
     # test_evaluate_images()
-    test_real_image(REAL_IMAGE_PATH)
+    # test_real_image(REAL_IMAGE_PATH)
+    test_evaluate_images()

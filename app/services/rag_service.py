@@ -2,6 +2,15 @@
 import os
 from typing import List, Any
 from PIL import Image
+
+# Fix for old SQLite versions on server (ChromaDB requires SQLite > 3.35)
+try:
+    import sys
+    import pysqlite3
+    sys.modules['sqlite3'] = pysqlite3
+except ImportError:
+    pass
+
 import chromadb
 from chromadb.utils.embedding_functions import EmbeddingFunction
 from sentence_transformers import SentenceTransformer
